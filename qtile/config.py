@@ -29,6 +29,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.widget import backlight
+from datetime import datetime
 
 mod = "mod4"
 terminal = guess_terminal("alacritty")
@@ -83,7 +84,10 @@ keys = [
     Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -q -U 2")),
 
     # Lock machine
-    Key([mod], "q", lazy.spawn("xset s activate"))
+    Key([mod], "q", lazy.spawn("xset s activate")),
+
+    # Screenshot
+    Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % datetime.now().strftime("%Y%m%d_%H%M%S")))
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -163,7 +167,13 @@ screens = [
                 widget.Spacer(
                     length=16
                 ),
-                widget.Prompt(),
+                widget.Prompt(
+                    foreground="#ebebeb",
+                    background="#292c3e"
+                ),
+                widget.Spacer(
+                    length=16
+                ),
                 widget.WindowName(),
                 #widget.Chord(
                 #    chords_colors={
@@ -217,9 +227,11 @@ screens = [
                 widget.Battery(
                     foreground="#33ff00",
                     format="{char} {percent:2.0%}",
+                    full_char="🔋",
                     charge_char="⚡",
                     discharge_char="🔋",
-                    empty_char="🪫"
+                    empty_char="🪫",
+                    unknown_char="🔋"
                 ),
                 widget.Spacer(
                     length=16
