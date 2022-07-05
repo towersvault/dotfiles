@@ -28,6 +28,7 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile.widget import backlight
 
 mod = "mod4"
 terminal = guess_terminal("alacritty")
@@ -40,7 +41,7 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
@@ -70,12 +71,16 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "space", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # Media keys
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 1- unmute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 1+ unmute"))
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 1+ unmute")),
+
+    # Brightness keys
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -q -A 2")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -q -U 2"))
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -140,6 +145,15 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
+                widget.Prompt(),
+                widget.WindowName(),
+                #widget.Chord(
+                #    chords_colors={
+                #        "launch": ("#ff0000", "#ffffff"),
+                #    },
+                #    name_transform=lambda name: name.upper(),
+                #),
+                widget.Spacer(),
                 widget.GroupBox(
                     highlight_method="font",
                     active="#8763b8",
@@ -147,16 +161,10 @@ screens = [
                     inactive="#444444",
                     margin_y=3,
                     margin_x=4,
-                    block_highlight_text_color="#21deef"
+                    block_highlight_text_color="#21deef",
+                    center_aligned=True
                 ),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
+                widget.Spacer(),
                 widget.TextBox(
                     "🔊",
                     font="Emoji"
@@ -190,13 +198,12 @@ screens = [
                     padding=8,
                     linewidth=1
                 ),
-                widget.TextBox(
-                    "⚡",
-                    font="Emoji"
-                ),
                 widget.Battery(
                     foreground="#33ff00",
-                    format="{percent:2.0%}"
+                    format="{char} {percent:2.0%}",
+                    charge_char="⚡",
+                    discharge_char="🔋",
+                    empty_char="🪫"
                 ),
                 widget.Sep(
                     foreground="#444444",

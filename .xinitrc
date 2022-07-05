@@ -2,7 +2,7 @@
 xset -b
 
 # Start Pulseaudio Daemon
-pulseaudio -D &
+#pulseaudio -D &
 
 # Start compositor for fancy visuals
 picom &
