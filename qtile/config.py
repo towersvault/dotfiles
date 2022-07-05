@@ -80,7 +80,10 @@ keys = [
 
     # Brightness keys
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -q -A 2")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -q -U 2"))
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -q -U 2")),
+
+    # Lock machine
+    Key([mod], "q", lazy.spawn("xset s activate"))
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -138,6 +141,8 @@ widget_defaults = dict(
     font="NotoSans",
     fontsize=12,
     padding=3,
+    foreground="#ebebeb",
+    background="#0d0d0d"
 )
 extension_defaults = widget_defaults.copy()
 
@@ -145,6 +150,19 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
+                widget.Spacer(
+                    length=16
+                ),
+                widget.TextBox(
+                    "🕑",
+                    font="Emoji"
+                ),
+                widget.Clock(
+                    format="%a, %d %b %Y @ %-H:%M"
+                ),
+                widget.Spacer(
+                    length=16
+                ),
                 widget.Prompt(),
                 widget.WindowName(),
                 #widget.Chord(
@@ -172,10 +190,8 @@ screens = [
                 widget.Volume(
                     foreground="#1ba6fa"
                 ),
-                widget.Sep(
-                    foreground="#444444",
-                    padding=8,
-                    linewidth=1
+                widget.Spacer(
+                    length=16
                 ),
                 widget.TextBox(
                     "☀️",
@@ -185,18 +201,18 @@ screens = [
                     backlight_name="amdgpu_bl0",
                     foreground="#ffc620"
                 ),
-                widget.Sep(
-                    foreground="#444444",
-                    padding=8,
-                    linewidth=1
+                widget.Spacer(
+                    length=16
+                ),
+                widget.TextBox(
+                    "🌍",
+                    font="Emoji"
                 ),
                 widget.Wlan(
-                    format="{essid} {percent:2.0%}"
+                    format="{essid}"
                 ),
-                widget.Sep(
-                    foreground="#444444",
-                    padding=8,
-                    linewidth=1
+                widget.Spacer(
+                    length=16
                 ),
                 widget.Battery(
                     foreground="#33ff00",
@@ -205,15 +221,10 @@ screens = [
                     discharge_char="🔋",
                     empty_char="🪫"
                 ),
-                widget.Sep(
-                    foreground="#444444",
-                    padding=8,
-                    linewidth=1
+                widget.Spacer(
+                    length=16
                 ),
                 widget.Systray(),
-                widget.Clock(
-                    format="%Y-%m-%d %a %I:%M %p"
-                ),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
