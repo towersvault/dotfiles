@@ -194,6 +194,16 @@ screens = [
                 ),
                 widget.Spacer(),
                 widget.TextBox(
+                    "🌍",
+                    font="Emoji"
+                ),
+                widget.Wlan(
+                    format="{essid} {percent:2.0%}"
+                ),
+                widget.Spacer(
+                    length=16
+                ),
+                widget.TextBox(
                     "🔊",
                     font="Emoji"
                 ),
@@ -210,16 +220,6 @@ screens = [
                 widget.Backlight(
                     backlight_name="amdgpu_bl0",
                     foreground="#ffc620"
-                ),
-                widget.Spacer(
-                    length=16
-                ),
-                widget.TextBox(
-                    "🌍",
-                    font="Emoji"
-                ),
-                widget.Wlan(
-                    format="{essid}"
                 ),
                 widget.Spacer(
                     length=16

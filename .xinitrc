@@ -20,5 +20,8 @@ export XSECURELOCK_PASSWORD_PROMPT=asterisks
 xset s 300 5
 xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
 
+# Disable cursor acceleration
+xinput --set-prop 13 'libinput Accel Profile Enabled' 0, 1
+
 # Start qtile window manager
 qtile start
