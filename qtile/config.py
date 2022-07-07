@@ -29,12 +29,16 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.widget import backlight
-from datetime import datetime
+
+from keybinds import keys
 
 mod = "mod4"
 terminal = guess_terminal("alacritty")
 
-keys = [
+
+# keys = keybinds.keys
+
+""" keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
@@ -88,7 +92,7 @@ keys = [
 
     # Screenshot
     Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % datetime.now().strftime("%Y%m%d_%H%M%S")))
-]
+] """
 
 groups = [Group(i) for i in "123456789"]
 

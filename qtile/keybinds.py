@@ -1,0 +1,59 @@
+"""
+Mouse and keyboard bindings.
+"""
+
+
+from libqtile.lazy import lazy
+from libqtile.config import Key
+
+from datetime import datetime
+
+mod = 'mod4'
+
+keys = [
+    # Move window focus
+    Key([mod], 'Left', lazy.layout.left(), desc='Move focus to left'),
+    Key([mod], 'Right', lazy.layout.right(), desc='Move focus to right'),
+    Key([mod], 'Down', lazy.layout.down(), desc='Move focus down'),
+    Key([mod], 'Up', lazy.layout.up(), desc='Move focus up'),
+
+    # Move windows around the current group
+    Key([mod, 'shift'], 'Left', lazy.layout.shuffle_left(), desc='Move window to the left'),
+    Key([mod, 'shift'], 'Right', lazy.layout.shuffle_right(), desc='Move window to the right'),
+    Key([mod, 'shift'], 'Down', lazy.layout.shuffle_down(), desc='Move window to the bottom'),
+    Key([mod, 'shift'], 'Up', lazy.layout.shuffle_up(), desc='Move window to the top'),
+
+    # Grow focused window in the chosen direction
+    Key([mod, 'control'], 'Left', lazy.layout.grow_left(), desc='Grow window to the left'),
+    Key([mod, 'control'], 'Right', lazy.layout.grow_right(), desc='Grow window to the right'),
+    Key([mod, 'control'], 'Down', lazy.layout.grow_down(), desc='Grow window down'),
+    Key([mod, 'control'], 'Up', lazy.layout.grow_up(), desc='Grow window up'),
+    Key([mod], 'n', lazy.layout.normalize(), desc='Reset all window sizes'),
+
+    # Close focused window
+    Key([mod], 'q', lazy.window.kill(), desc='Close the focused window'),
+
+    # Lock computer
+    Key([mod, 'shift'], 'q', lazy.spawn('xset s activate')),
+
+    # Spawn application
+    Key([mod], 'space', lazy.spawncmd(), desc='Spawn a command using a prompt widget'),
+
+    # Reload config
+    Key([mod, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
+
+    # Shutdown Qtile
+    Key([mod, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
+
+    # Media keys
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 1- unmute")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 1+ unmute")),
+
+    # Brightness keys
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -q -A 2")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -q -U 2")),
+
+    # Screenshot
+    Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % datetime.now().strftime("%Y%m%d_%H%M%S")))
+]
