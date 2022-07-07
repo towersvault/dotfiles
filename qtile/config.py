@@ -31,68 +31,13 @@ from libqtile.utils import guess_terminal
 from libqtile.widget import backlight
 
 from keybinds import keys
+from layouts import layouts
+import colors
+
 
 mod = "mod4"
 terminal = guess_terminal("alacritty")
 
-
-# keys = keybinds.keys
-
-""" keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
-    # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key(
-        [mod, "shift"],
-        "Return",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "space", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-
-    # Media keys
-    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 1- unmute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 1+ unmute")),
-
-    # Brightness keys
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -q -A 2")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -q -U 2")),
-
-    # Lock machine
-    Key([mod], "q", lazy.spawn("xset s activate")),
-
-    # Screenshot
-    Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % datetime.now().strftime("%Y%m%d_%H%M%S")))
-] """
 
 groups = [Group(i) for i in "123456789"]
 
@@ -120,37 +65,12 @@ for i in groups:
         ]
     )
 
-layouts = [
-    layout.Columns(
-        # border_focus_stack=["#285577", "#5f676a"], 
-        # border_normal=["#285577", "#5f676a"],
-        border_focus="#285577",
-        border_focus_stack="#285577",
-        border_normal="#5f676a",
-        border_normal_stack="#5f676a",
-        margin=8,
-        border_width=1
-    ),
-    layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
-]
-
 widget_defaults = dict(
     font="NotoSans",
     fontsize=12,
-    padding=3,
-    foreground="#ebebeb",
-    background="#0d0d0d"
+    padding=0,
+    foreground=colors.NORMAL_WHITE,
+    background=colors.NORMAL_BLACK
 )
 extension_defaults = widget_defaults.copy()
 
@@ -162,8 +82,9 @@ screens = [
                     length=16
                 ),
                 widget.TextBox(
-                    "🕑",
-                    font="Emoji"
+                    "\uF64F",
+                    font="NotoEmoji Nerd Font Mono",
+                    padding=4
                 ),
                 widget.Clock(
                     format="%a, %d %b %Y @ %-H:%M"
@@ -172,34 +93,31 @@ screens = [
                     length=16
                 ),
                 widget.Prompt(
-                    foreground="#ebebeb",
-                    background="#292c3e"
+                    foreground=colors.NORMAL_BLACK,
+                    background=colors.BRIGHT_WHITE
                 ),
                 widget.Spacer(
                     length=16
                 ),
-                widget.WindowName(),
-                #widget.Chord(
-                #    chords_colors={
-                #        "launch": ("#ff0000", "#ffffff"),
-                #    },
-                #    name_transform=lambda name: name.upper(),
-                #),
+                widget.WindowName(
+                    foreground=colors.BRIGHT_BLACK
+                ),
                 widget.Spacer(),
                 widget.GroupBox(
                     highlight_method="font",
-                    active="#8763b8",
+                    active=colors.NORMAL_BLUE,
                     borderwidth=0,
-                    inactive="#444444",
+                    inactive=colors.BRIGHT_BLACK,
                     margin_y=3,
-                    margin_x=4,
-                    block_highlight_text_color="#21deef",
+                    margin_x=8,
+                    block_highlight_text_color=colors.BRIGHT_CYAN,
                     center_aligned=True
                 ),
                 widget.Spacer(),
                 widget.TextBox(
-                    "🌍",
-                    font="Emoji"
+                    "\uF09E",
+                    font="NotoEmoji Nerd Font Mono",
+                    padding=4
                 ),
                 widget.Wlan(
                     format="{essid} {percent:2.0%}"
@@ -208,8 +126,10 @@ screens = [
                     length=16
                 ),
                 widget.TextBox(
-                    "🔊",
-                    font="Emoji"
+                    "\uFA7D",
+                    font="NotoEmoji Nerd Font Mono",
+                    padding=4,
+                    foreground="#1ba6fa"
                 ),
                 widget.Volume(
                     foreground="#1ba6fa"
@@ -218,8 +138,10 @@ screens = [
                     length=16
                 ),
                 widget.TextBox(
-                    "☀️",
-                    font="Emoji"
+                    "\uF5DF",
+                    font="NotoEmoji Nerd Font Mono",
+                    padding=4,
+                    foreground="#ffc620"
                 ),
                 widget.Backlight(
                     backlight_name="amdgpu_bl0",
@@ -231,11 +153,12 @@ screens = [
                 widget.Battery(
                     foreground="#33ff00",
                     format="{char} {percent:2.0%}",
-                    full_char="🔋",
-                    charge_char="⚡",
-                    discharge_char="🔋",
-                    empty_char="🪫",
-                    unknown_char="🔋"
+                    full_char="\uF578",
+                    charge_char="\uF583",
+                    discharge_char="\uF58B",
+                    empty_char="\uF582",
+                    unknown_char="\uF578",
+                    font="NotoSans, NotoEmoji Nerd Font Mono"
                 ),
                 widget.Spacer(
                     length=16

@@ -5,10 +5,13 @@ Mouse and keyboard bindings.
 
 from libqtile.lazy import lazy
 from libqtile.config import Key
+from libqtile.utils import guess_terminal
 
 from datetime import datetime
 
+
 mod = 'mod4'
+terminal = guess_terminal('alacritty')
 
 keys = [
     # Move window focus
@@ -35,6 +38,9 @@ keys = [
 
     # Lock computer
     Key([mod, 'shift'], 'q', lazy.spawn('xset s activate')),
+
+    # Spawn terminal
+    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
     # Spawn application
     Key([mod], 'space', lazy.spawncmd(), desc='Spawn a command using a prompt widget'),
