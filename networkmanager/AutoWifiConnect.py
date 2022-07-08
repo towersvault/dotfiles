@@ -56,7 +56,7 @@ known_results = networks_known.stdout.splitlines()
 # Compile list of common SSIDs between scan and known results,
 # in addition to flagging if system is connected or not
 for network in scan_results:
-    print('Scanned network: %s' % network)
+    # print('Scanned network: %s' % network)
     network_info = network.split(':')
     ssid = network_info[0]
     connected = False
@@ -75,7 +75,7 @@ if len(potential_access_points) >= 1:
 
     potential_access_points.sort(key=signal_strength)
 
-    print(potential_access_points)
+    # print(potential_access_points)
 
     # Switch to network with best signal strength
     strongest_available_ap = str(potential_access_points[0]).split(':')
