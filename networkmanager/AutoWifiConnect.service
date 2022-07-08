@@ -1,0 +1,13 @@
+[Unit]
+Description=Resume WiFi after wake from Sleep
+After=suspend.target
+After=hybrid-sleep.target
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+ExecStart=/home/clifford/.config/networkmanager/AutoWifiConnect.sh
+
+[Install]
+WantedBy=suspend.target
+WantedBy=hybrid-sleep.target
