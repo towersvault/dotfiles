@@ -2,8 +2,8 @@
 Description=Timer for periodically scanning for WiFi.
 
 [Timer]
-OnBootSec=60s
-OnUnitActiveSec=60s
+OnBootSec=120s
+OnUnitActiveSec=120s
 
 [Install]
 WantedBy=timers.target
