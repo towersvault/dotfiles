@@ -24,22 +24,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, widget
+from libqtile import bar, layout
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.widget import backlight
 
+from qtile_extras import widget
+from qtile_extras.widget.decorations import RectDecoration
+
 from keybinds import keys
 from layouts import layouts
+from groups import groups
 import colors
+import colors2
+import decorations
 
 
 mod = "mod4"
 terminal = guess_terminal("alacritty")
 
 
-groups = [Group(i) for i in "123456789"]
+""" groups = [Group(i) for i in "123456789"]
 
 for i in groups:
     keys.extend(
@@ -63,14 +69,14 @@ for i in groups:
             # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
             #     desc="move focused window to group {}".format(i.name)),
         ]
-    )
+    ) """
 
 widget_defaults = dict(
-    font="NotoSans",
+    font="NotoSans, NotoEmoji Nerd Font Mono",
     fontsize=12,
     padding=0,
-    foreground=colors.NORMAL_WHITE,
-    background=colors.NORMAL_BLACK
+    foreground=colors2.SUBTEXT_1,
+    background=colors2.CRUST
 )
 extension_defaults = widget_defaults.copy()
 
@@ -81,91 +87,143 @@ screens = [
                 widget.Spacer(
                     length=16
                 ),
-                widget.TextBox(
-                    "\uF64F",
-                    font="NotoEmoji Nerd Font Mono",
-                    padding=4
-                ),
-                widget.Clock(
-                    format="%a, %d %b %Y @ %-H:%M"
-                ),
-                widget.Spacer(
-                    length=16
-                ),
-                widget.Prompt(
-                    foreground=colors.NORMAL_BLACK,
-                    background=colors.BRIGHT_WHITE
-                ),
-                widget.Spacer(
-                    length=16
-                ),
-                widget.WindowName(
-                    foreground=colors.BRIGHT_BLACK
-                ),
-                widget.Spacer(),
+
+                # Group box segment
                 widget.GroupBox(
                     highlight_method="font",
-                    active=colors.NORMAL_BLUE,
+                    active=colors2.SURFACE_1,
                     borderwidth=0,
-                    inactive=colors.BRIGHT_BLACK,
-                    margin_y=3,
-                    margin_x=8,
-                    block_highlight_text_color=colors.BRIGHT_CYAN,
-                    center_aligned=True
+                    inactive=colors2.BASE,
+                    block_highlight_text_color=colors2.TEXT,
+                    center_aligned=True,
+                    **decorations.decor_base
                 ),
+
+                widget.Spacer(
+                    length=16
+                ),
+
+                # Prompt segment
+                widget.Prompt(
+                    prompt='\uF848 ',
+                    foreground=colors2.CRUST,
+                    **decorations.decor_prompt
+                ),
+
+                widget.Spacer(
+                    length=16
+                ),
+
+                # Window name segment
+                widget.WindowName(
+                    foreground=colors2.SUBTEXT_0
+                ),
+
                 widget.Spacer(),
+
+                # WiFi segment
                 widget.TextBox(
                     "\uF09E",
-                    font="NotoEmoji Nerd Font Mono",
-                    padding=4
+                    foreground=colors2.TEXT,
+                    **decorations.decor_wifi
+                ),
+                widget.Spacer(
+                    length=4
                 ),
                 widget.Wlan(
-                    format="{essid} {percent:2.0%}"
+                    format="{essid} {percent:2.0%}",
+                    **decorations.decor_base
                 ),
+
                 widget.Spacer(
                     length=16
                 ),
+
+                # Sound segment
                 widget.TextBox(
                     "\uFA7D",
-                    font="NotoEmoji Nerd Font Mono",
-                    padding=4,
-                    foreground="#1ba6fa"
+                    foreground=colors2.TEXT,
+                    **decorations.decor_sound
+                ),
+                widget.Spacer(
+                    length=4
                 ),
                 widget.Volume(
-                    foreground="#1ba6fa"
+                    **decorations.decor_base
                 ),
+
                 widget.Spacer(
                     length=16
                 ),
+
+                # Brightness segment
                 widget.TextBox(
-                    "\uF5DF",
-                    font="NotoEmoji Nerd Font Mono",
-                    padding=4,
-                    foreground="#ffc620"
+                    "\uFC6A",
+                    foreground=colors2.TEXT,
+                    **decorations.decor_brightness
+                ),
+                widget.Spacer(
+                    length=4
                 ),
                 widget.Backlight(
                     backlight_name="amdgpu_bl0",
-                    foreground="#ffc620"
+                    **decorations.decor_base
                 ),
+
                 widget.Spacer(
                     length=16
                 ),
+
+                # Battery segment
                 widget.Battery(
-                    foreground="#33ff00",
-                    format="{char} {percent:2.0%}",
+                    format="{char}",
+                    foreground=colors2.TEXT,
                     full_char="\uF578",
                     charge_char="\uF583",
                     discharge_char="\uF58B",
                     empty_char="\uF582",
                     unknown_char="\uF578",
-                    font="NotoSans, NotoEmoji Nerd Font Mono"
+                    **decorations.decor_battery
                 ),
+                widget.Spacer(
+                    length=4
+                ),
+                widget.Battery(
+                    format="{percent:2.0%}",
+                    full_char="\uF578",
+                    charge_char="\uF583",
+                    discharge_char="\uF58B",
+                    empty_char="\uF582",
+                    unknown_char="\uF578",
+                    **decorations.decor_base
+                ),
+
                 widget.Spacer(
                     length=16
                 ),
+
+                # Clock segment
+                widget.TextBox(
+                    "\uF64F",
+                    foreground=colors2.TEXT,
+                    **decorations.decor_clock
+                ),
+                widget.Spacer(
+                    length=4
+                ),
+                widget.Clock(
+                    format="%-H:%M",
+                    **decorations.decor_base
+                ),
+
+                widget.Spacer(
+                    length=16
+                ),
+
+                # Systray segment
                 widget.Systray(),
             ],
-            24,
+            40,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
