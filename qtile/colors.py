@@ -2,37 +2,62 @@
 Colors used for everything.
 """
 
-# Smoooooth color theme
-
-
-# Used in layouts
-BORDER =            '#5f676a'
-BORDER_FOCUS =      '#285577'
-
-# Text
-TEXT = '#000000'
-CURSOR = '#fefffe'
-
-# Selection
-SELECTION_TEXT = '#000000'
-SELECTION_BACKGROUND = '#b3d7ff'
-
-# Regular colors
-NORMAL_BLACK =      '#14191e'
-NORMAL_RED =        '#b43c29'
-NORMAL_GREEN =      '#00c200'
-NORMAL_YELLOW =     '#c7c400'
-NORMAL_BLUE =       '#2743c7'
-NORMAL_MAGENTA =    '#bf3fbd'
-NORMAL_CYAN =       '#00c5c7'
-NORMAL_WHITE =      '#c7c7c7'
-
-# Bright colors
-BRIGHT_BLACK =      '#676767'
-BRIGHT_RED =        '#dc7974'
-BRIGHT_GREEN =      '#57e690'
-BRIGHT_YELLOW =     '#ece100'
-BRIGHT_BLUE =       '#a6aaf1'
-BRIGHT_MAGENTA =    '#e07de0'
-BRIGHT_CYAN =       '#5ffdff'
-BRIGHT_WHITE =      '#feffff'
+# https://raw.githubusercontent.com/ayu-theme/ayu-colors/master/colors.svg
+ayu_dark = {
+    'syntax': {
+        'tag':              '#39bae6',
+        'func':             '#ffb545',
+        'entity':           '#59c2ff',
+        'string':           '#aad94c',
+        'regexp':           '#95e6cb',
+        'markup':           '#f07178',
+        'keyword':          '#ff8f40',
+        'special':          '#e6b673',
+        'comment':          '#acb6bf',
+        'constant':         '#d2a6ff',
+        'operator':         '#f29668'
+    },
+    'vcs': {
+        'added':            '#7fd962',
+        'modified':         '#73b8ff',
+        'removed':          '#f26d78'
+    },
+    'editor': {
+        'fg':               '#bfbdb6',
+        'bg':               '#0d1017',
+        'line':             '#131721',
+        'selection': {
+            'active':       '#1b3a5b',
+            'inactive':     '#122233'
+        },
+        'findMatch': {
+            'active':       '#6c5980',
+            'invactive':    '#322c3f'
+        },
+        'gutter': {
+            'active':       '#636975',
+            'normal':       '#454b55'
+        },
+        'indentGuide': {
+            'active':       '#3c404a',
+            'normal':       '#1e232a'
+        }
+    },
+    'ui': {
+        'fg':               '#565b66',
+        'bg':               '#0b0e14',
+        'line':             '#11151c',
+        'selection': {
+            'active':       '#1b1f28',
+            'normal':       '#171c24'
+        },
+        'panel': {
+            'bg':           '#0f131a',
+            'shadow':       '#06070a'
+        }
+    },
+    'common': {
+        'accent':           '#e6b450',
+        'error':            '#d95757'
+    }
+}

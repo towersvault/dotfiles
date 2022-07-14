@@ -36,8 +36,7 @@ from qtile_extras.widget.decorations import RectDecoration
 from keybinds import keys
 from layouts import layouts
 from groups import groups
-import colors
-import colors2
+from colors import ayu_dark as color
 import decorations
 
 
@@ -45,38 +44,12 @@ mod = "mod4"
 terminal = guess_terminal("alacritty")
 
 
-""" groups = [Group(i) for i in "123456789"]
-
-for i in groups:
-    keys.extend(
-        [
-            # mod1 + letter of group = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
-            ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
-            ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
-        ]
-    ) """
-
 widget_defaults = dict(
-    font="NotoSans, NotoEmoji Nerd Font Mono",
+    font="Source Code Pro Black, NotoEmoji Nerd Font Mono",
     fontsize=12,
     padding=0,
-    foreground=colors2.SUBTEXT_1,
-    background=colors2.CRUST
+    foreground=color['editor']['fg'],
+    background=color['ui']['bg']
 )
 extension_defaults = widget_defaults.copy()
 
@@ -84,17 +57,13 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
-                widget.Spacer(
-                    length=16
-                ),
-
                 # Group box segment
                 widget.GroupBox(
                     highlight_method="font",
-                    active=colors2.SURFACE_1,
+                    active=color['editor']['gutter']['active'],
                     borderwidth=0,
-                    inactive=colors2.BASE,
-                    block_highlight_text_color=colors2.TEXT,
+                    inactive=color['editor']['indentGuide']['active'],
+                    block_highlight_text_color=color['syntax']['tag'],
                     center_aligned=True,
                     **decorations.decor_base
                 ),
@@ -106,7 +75,7 @@ screens = [
                 # Prompt segment
                 widget.Prompt(
                     prompt='\uF848 ',
-                    foreground=colors2.CRUST,
+                    foreground=color['ui']['line'],
                     **decorations.decor_prompt
                 ),
 
@@ -115,21 +84,16 @@ screens = [
                 ),
 
                 # Window name segment
-                widget.WindowName(
-                    foreground=colors2.SUBTEXT_0
-                ),
+                widget.WindowName(),
 
                 widget.Spacer(),
 
                 # WiFi segment
                 widget.TextBox(
-                    "\uF09E",
-                    foreground=colors2.TEXT,
-                    **decorations.decor_wifi
+                    'WLAN',
+                    **decorations.decor_widget_title
                 ),
-                widget.Spacer(
-                    length=4
-                ),
+
                 widget.Wlan(
                     format="{essid} {percent:2.0%}",
                     **decorations.decor_base
@@ -141,14 +105,11 @@ screens = [
 
                 # Sound segment
                 widget.TextBox(
-                    "\uFA7D",
-                    foreground=colors2.TEXT,
-                    **decorations.decor_sound
+                    'VOLM',
+                    **decorations.decor_widget_title
                 ),
-                widget.Spacer(
-                    length=4
-                ),
-                widget.Volume(
+                
+                widget.PulseVolume(
                     **decorations.decor_base
                 ),
 
@@ -158,13 +119,10 @@ screens = [
 
                 # Brightness segment
                 widget.TextBox(
-                    "\uFC6A",
-                    foreground=colors2.TEXT,
-                    **decorations.decor_brightness
+                    'BCKL',
+                    **decorations.decor_widget_title
                 ),
-                widget.Spacer(
-                    length=4
-                ),
+
                 widget.Backlight(
                     backlight_name="amdgpu_bl0",
                     **decorations.decor_base
@@ -175,19 +133,11 @@ screens = [
                 ),
 
                 # Battery segment
-                widget.Battery(
-                    format="{char}",
-                    foreground=colors2.TEXT,
-                    full_char="\uF578",
-                    charge_char="\uF583",
-                    discharge_char="\uF58B",
-                    empty_char="\uF582",
-                    unknown_char="\uF578",
-                    **decorations.decor_battery
+                widget.TextBox(
+                    'BATT',
+                    **decorations.decor_widget_title
                 ),
-                widget.Spacer(
-                    length=4
-                ),
+                
                 widget.Battery(
                     format="{percent:2.0%}",
                     full_char="\uF578",
@@ -204,31 +154,26 @@ screens = [
 
                 # Clock segment
                 widget.TextBox(
-                    "\uF64F",
-                    foreground=colors2.TEXT,
-                    **decorations.decor_clock
+                    'TIME',
+                    **decorations.decor_widget_title
                 ),
-                widget.Spacer(
-                    length=4
-                ),
+                
                 widget.Clock(
                     format="%-H:%M",
                     **decorations.decor_base
                 ),
-
-                widget.Spacer(
-                    length=16
-                ),
-
-                # Systray segment
-                widget.Systray(),
             ],
+
+            # Height of Bar
             40,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+
+            # Margin
+            margin=[4, 8, 8, 8],
+
+            opacity=1
         ),
         # Set Static Wallpaper
-        wallpaper="/home/clifford/Pictures/archlinux-wallpaper.png",
+        wallpaper="/home/clifford/Pictures/archlinux-wallpaper2.png",
 
         # Wallpaper mode to 'fill' or 'stretch'
         wallpaper_mode='fill'
@@ -248,6 +193,9 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
+    border_normal=color['editor']['bg'],
+    border_focus=color['editor']['fg'],
+    border_width=1,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,

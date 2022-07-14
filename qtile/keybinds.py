@@ -52,14 +52,19 @@ keys = [
     Key([mod, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
 
     # Media keys
-    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 1- unmute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 1+ unmute")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse set Master toggle")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 2%- unmute")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 2%+ unmute")),
 
     # Brightness keys
     Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -q -A 2")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -q -U 2")),
 
     # Screenshot
-    Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % datetime.now().strftime("%Y%m%d_%H%M%S")))
+    Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % datetime.now().strftime("%Y%m%d_%H%M%S"))),
+
+    # Change layouts
+    Key([mod], 'Tab', lazy.window.toggle_floating(), desc='Toggle highlighted window to either floating or non-floating, opposite of which it is'),
+
+
 ]

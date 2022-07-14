@@ -1,81 +1,29 @@
 from qtile_extras.widget.decorations import RectDecoration
 
-import colors2
+from colors import ayu_dark as color
 
 
 # Base widget decoration without color
 decor_base = {
     'decorations': [
         RectDecoration(
-            colour=colors2.MANTLE,
-            radius=4,
+            colour=color['ui']['bg'],
+            radius=0,
             filled=True,
-            padding_y=2
+            padding_y=0
         )
     ],
     'padding': 16
 }
 
 # Clock emoji decoration
-decor_clock = {
+decor_widget_title = {
     'decorations': [
         RectDecoration(
-            colour=colors2.RED,
-            radius=4,
+            colour=color['editor']['line'],
+            radius=0,
             filled=True,
-            padding_y=2
-        )
-    ],
-    'padding': 16
-}
-
-# WiFi emoji decoration
-decor_wifi = {
-    'decorations': [
-        RectDecoration(
-            colour=colors2.MAUVE,
-            radius=4,
-            filled=True,
-            padding_y=2
-        )
-    ],
-    'padding': 16
-}
-
-# Sound emoji decoration
-decor_sound = {
-    'decorations': [
-        RectDecoration(
-            colour=colors2.BLUE,
-            radius=4,
-            filled=True,
-            padding_y=2
-        )
-    ],
-    'padding': 16
-}
-
-# Display brightness emoji decoration
-decor_brightness = {
-    'decorations': [
-        RectDecoration(
-            colour=colors2.YELLOW,
-            radius=4,
-            filled=True,
-            padding_y=2
-        )
-    ],
-    'padding': 16
-}
-
-# Battery emoji decoration
-decor_battery = {
-    'decorations': [
-        RectDecoration(
-            colour=colors2.GREEN,
-            radius=4,
-            filled=True,
-            padding_y=2
+            padding_y=0
         )
     ],
     'padding': 16
@@ -85,7 +33,7 @@ decor_battery = {
 decor_prompt = {
     'decorations': [
         RectDecoration(
-            colour=colors2.TEXT,
+            colour=color['editor']['fg'],
             radius=4,
             filled=True,
             padding_y=2
