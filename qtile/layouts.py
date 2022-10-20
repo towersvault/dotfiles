@@ -15,7 +15,7 @@ layouts = [
         border_normal=color['editor']['bg'],
         border_normal_stack=color['editor']['bg'],
         margin=8,
-        border_width=1
+        border_width=0
     ),
     layout.Max()
 ]

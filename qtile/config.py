@@ -168,12 +168,12 @@ screens = [
             40,
 
             # Margin
-            margin=[4, 8, 8, 8],
+            margin=[0, 0, 0, 0],
 
             opacity=1
         ),
         # Set Static Wallpaper
-        wallpaper="/home/clifford/Pictures/archlinux-wallpaper2.png",
+        wallpaper="/home/clifford/Downloads/sebastian-staines-O5rFo-cJu94-unsplash.jpg",
 
         # Wallpaper mode to 'fill' or 'stretch'
         wallpaper_mode='fill'
@@ -195,7 +195,7 @@ cursor_warp = False
 floating_layout = layout.Floating(
     border_normal=color['editor']['bg'],
     border_focus=color['editor']['fg'],
-    border_width=1,
+    border_width=0,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
