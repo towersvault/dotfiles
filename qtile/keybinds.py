@@ -57,8 +57,8 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 2%+ unmute")),
 
     # Brightness keys
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brillo -q -A 2")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brillo -q -U 2")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
 
     # Screenshot
     Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % datetime.now().strftime("%Y%m%d_%H%M%S"))),
