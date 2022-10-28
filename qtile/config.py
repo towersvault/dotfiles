@@ -55,7 +55,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 # Group box segment
                 widget.GroupBox(
@@ -65,6 +65,7 @@ screens = [
                     inactive=color['editor']['indentGuide']['active'],
                     block_highlight_text_color=color['syntax']['tag'],
                     center_aligned=True,
+                    fontsize=14,
                     **decorations.decor_base
                 ),
 
