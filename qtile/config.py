@@ -57,6 +57,13 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.TextBox(
+                    '\uf303',
+                    foreground=color['syntax']['tag'],
+                    fontsize=16,
+                    **decorations.decor_base
+                ),
+
                 # Group box segment
                 widget.GroupBox(
                     highlight_method="font",
@@ -140,12 +147,13 @@ screens = [
                 ),
                 
                 widget.Battery(
-                    format="{percent:2.0%}",
-                    full_char="\uF578",
-                    charge_char="\uF583",
-                    discharge_char="\uF58B",
-                    empty_char="\uF582",
-                    unknown_char="\uF578",
+                    format="{char}{percent:2.0%}",
+                    full_char="",
+                    charge_char="\uf0e7 ",
+                    discharge_char="",
+                    empty_char="",
+                    unknown_char="",
+                    low_foreground=color['syntax']['regexp'],
                     **decorations.decor_base
                 ),
 
@@ -163,6 +171,30 @@ screens = [
                     format="%-H:%M",
                     **decorations.decor_base
                 ),
+
+                widget.Spacer(
+                    length=16
+                ),
+
+                widget.TextBox(
+                    '\uF444',
+                    fontsize=26,
+                    foreground=color['common']['accent'],
+                    mouse_callbacks={lazy.spawn('systemctl hibernate')},
+                    **decorations.decor_power
+                ),
+
+                widget.TextBox(
+                    '\uF444',
+                    fontsize=26,
+                    foreground=color['common']['error'],
+                    mouse_callbacks={lazy.spawn('systemctl poweroff')},
+                    **decorations.decor_power
+                ),
+
+                widget.Spacer(
+                    length=16
+                )
             ],
 
             # Height of Bar
