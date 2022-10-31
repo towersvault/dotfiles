@@ -2,6 +2,7 @@
 Colors used for everything.
 """
 
+
 # https://raw.githubusercontent.com/ayu-theme/ayu-colors/master/colors.svg
 ayu_dark = {
     'syntax': {
