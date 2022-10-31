@@ -19,7 +19,7 @@ decor_base = {
 # Power decoration
 decor_power = {
     'decorations': [],
-    'padding': 8
+    'padding': 12
 }
 
 # Clock emoji decoration

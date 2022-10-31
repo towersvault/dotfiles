@@ -177,23 +177,27 @@ screens = [
                 ),
 
                 widget.TextBox(
-                    '\uF444',
-                    fontsize=26,
+                    '\uF9B1',
+                    fontsize=20,
                     foreground=color['common']['accent'],
-                    mouse_callbacks={lazy.spawn('systemctl hibernate')},
-                    **decorations.decor_power
-                ),
-
-                widget.TextBox(
-                    '\uF444',
-                    fontsize=26,
-                    foreground=color['common']['error'],
-                    mouse_callbacks={lazy.spawn('systemctl poweroff')},
+                    mouse_callbacks={'Button1': lazy.spawn('systemctl hibernate')},
                     **decorations.decor_power
                 ),
 
                 widget.Spacer(
-                    length=16
+                    length=8
+                ),
+
+                widget.TextBox(
+                    '\uF924',
+                    fontsize=20,
+                    foreground=color['common']['error'],
+                    mouse_callbacks={'Button1': lazy.spawn('systemctl poweroff')},
+                    **decorations.decor_power
+                ),
+
+                widget.Spacer(
+                    length=16+decorations.decor_power['padding']
                 )
             ],
 
