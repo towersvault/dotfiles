@@ -2,7 +2,7 @@
 xset -b
 
 # Start Pulseaudio Daemon
-#pulseaudio -D &
+# pulseaudio -D &
 
 # Start compositor for fancy visuals
 picom --backend glx --fade-exclude 'class_g = "xsecurelock"' &

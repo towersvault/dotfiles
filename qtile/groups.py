@@ -13,11 +13,11 @@ groups.append(Group('2', label='\uE795'))  # Terminal
 groups.append(Group('3', label='\uFB0F'))  # VSCode
 # groups.append(Group(''))  # IntelliJ IDEA
 groups.append(Group('4', label='\uF9C6'))  # Spotify 
-groups.append(Group('5', label='\uF444'))  # Generic
-groups.append(Group('6', label='\uF444'))  # Generic
-groups.append(Group('7', label='\uF444'))  # Generic
-groups.append(Group('8', label='\uF444'))  # Generic
-groups.append(Group('9', label='\uF444'))  # Generic
+groups.append(Group('5', label='\uF1B6'))  # Steam
+groups.append(Group('6', label='\uE7B5'))  # IntelliJ
+groups.append(Group('7', label='\uF8B5'))  # Generic
+groups.append(Group('8', label='\uF8B8'))  # Generic
+groups.append(Group('9', label='\uF8BB'))  # Generic
 
 for i in groups:
     keys.extend(

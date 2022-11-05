@@ -48,8 +48,7 @@ widget_defaults = dict(
     font="Source Code Pro Black, NotoEmoji Nerd Font Mono",
     fontsize=12,
     padding=0,
-    foreground=color['editor']['fg'],
-    background=color['ui']['bg']
+    foreground=color['editor']['fg']
 )
 extension_defaults = widget_defaults.copy()
 
@@ -57,33 +56,20 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.TextBox(
-                    '\uf303',
-                    foreground=color['syntax']['tag'],
-                    fontsize=16,
-                    **decorations.decor_base
-                ),
-
-                # Group box segment
-                widget.GroupBox(
-                    highlight_method="font",
-                    active=color['editor']['gutter']['active'],
-                    borderwidth=0,
-                    inactive=color['editor']['indentGuide']['active'],
-                    block_highlight_text_color=color['syntax']['tag'],
-                    center_aligned=True,
-                    fontsize=14,
-                    **decorations.decor_base
-                ),
-
                 widget.Spacer(
                     length=16
                 ),
 
+                widget.TextBox(
+                    '\uF848',
+                    fontsize=20,
+                    **decorations.decor_prompt
+                ),
+
                 # Prompt segment
                 widget.Prompt(
-                    prompt='\uF848 ',
-                    foreground=color['ui']['line'],
+                    prompt='',
+                    cursor_color=color['editor']['fg'],
                     **decorations.decor_prompt
                 ),
 
@@ -92,29 +78,65 @@ screens = [
                 ),
 
                 # Window name segment
-                widget.WindowName(),
-
-                widget.Spacer(),
-
-                # WiFi segment
-                widget.TextBox(
-                    'WLAN',
-                    **decorations.decor_widget_title
-                ),
-
-                widget.Wlan(
-                    format="{essid} {percent:2.0%}",
+                widget.WindowName(
+                    format='{name}',
                     **decorations.decor_base
                 ),
 
                 widget.Spacer(
-                    length=16
+                    length=bar.STRETCH
+                ),
+
+                widget.TextBox(
+                    '\uF574',
+                    foreground=color['syntax']['keyword'],
+                    fontsize=20,
+                    mouse_callbacks={'Button1': lazy.spawn('systemctl hibernate')},
+                    **decorations.decor_groupbox
+                ),
+
+                # Group box segment
+                widget.GroupBox(
+                    highlight_method="font",
+                    active=color['editor']['fg'],
+                    borderwidth=0,
+                    inactive=color['editor']['gutter']['normal'],
+                    block_highlight_text_color=color['syntax']['entity'],
+                    center_aligned=True,
+                    fontsize=16,
+                    **decorations.decor_groupbox
+                ),
+
+                widget.Clock(
+                    format="%-H:%M\n%-d %b %Y",
+                    **decorations.decor_groupbox
+                ),
+
+                widget.Spacer(
+                    length=bar.STRETCH
+                ),
+
+                # WiFi segment
+                widget.TextBox(
+                    '\uF96A',
+                    fontsize=20,
+                    **decorations.decor_base
+                ),
+
+                widget.Wlan(
+                    format="{percent:2.0%}",
+                    **decorations.decor_base
+                ),
+
+                widget.Spacer(
+                    length=20
                 ),
 
                 # Sound segment
                 widget.TextBox(
-                    'VOLM',
-                    **decorations.decor_widget_title
+                    '\uFA7D',
+                    fontsize=20,
+                    **decorations.decor_base
                 ),
                 
                 widget.PulseVolume(
@@ -122,13 +144,14 @@ screens = [
                 ),
 
                 widget.Spacer(
-                    length=16
+                    length=20
                 ),
 
-                # Brightness segment
+                # # Brightness segment
                 widget.TextBox(
-                    'BCKL',
-                    **decorations.decor_widget_title
+                    '\uF5DD',
+                    fontsize=20,
+                    **decorations.decor_base
                 ),
 
                 widget.Backlight(
@@ -137,19 +160,20 @@ screens = [
                 ),
 
                 widget.Spacer(
-                    length=16
+                    length=20
                 ),
 
                 # Battery segment
                 widget.TextBox(
-                    'BATT',
-                    **decorations.decor_widget_title
+                    '\uF578',
+                    fontsize=20,
+                    **decorations.decor_base
                 ),
                 
                 widget.Battery(
-                    format="{char}{percent:2.0%}",
+                    format="{percent:2.0%}",
                     full_char="",
-                    charge_char="\uf0e7 ",
+                    charge_char="",
                     discharge_char="",
                     empty_char="",
                     unknown_char="",
@@ -158,56 +182,17 @@ screens = [
                 ),
 
                 widget.Spacer(
-                    length=16
-                ),
-
-                # Clock segment
-                widget.TextBox(
-                    'TIME',
-                    **decorations.decor_widget_title
-                ),
-                
-                widget.Clock(
-                    format="%-H:%M",
-                    **decorations.decor_base
-                ),
-
-                widget.Spacer(
-                    length=16
-                ),
-
-                widget.TextBox(
-                    '\uF9B1',
-                    fontsize=20,
-                    foreground=color['common']['accent'],
-                    mouse_callbacks={'Button1': lazy.spawn('systemctl hibernate')},
-                    **decorations.decor_power
-                ),
-
-                widget.Spacer(
-                    length=8
-                ),
-
-                widget.TextBox(
-                    '\uF924',
-                    fontsize=20,
-                    foreground=color['common']['error'],
-                    mouse_callbacks={'Button1': lazy.spawn('systemctl poweroff')},
-                    **decorations.decor_power
-                ),
-
-                widget.Spacer(
-                    length=16+decorations.decor_power['padding']
+                    length=20
                 )
             ],
 
             # Height of Bar
-            40,
+            50,
 
             # Margin
             margin=[0, 0, 0, 0],
 
-            opacity=1
+            background=color['ui']['bg']
         ),
         # Set Static Wallpaper
         wallpaper="/home/clifford/Downloads/sebastian-staines-O5rFo-cJu94-unsplash.jpg",

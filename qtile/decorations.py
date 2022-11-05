@@ -8,13 +8,30 @@ decor_base = {
     'decorations': [
         RectDecoration(
             colour=color['ui']['bg'],
-            radius=0,
+            # radius=18,
+            # filled=True,
+            padding_y=6,
+            # group=True,
+            clip=True
+        )
+    ],
+    'padding': 6
+}
+
+
+decor_groupbox = {
+    'decorations': [
+        RectDecoration(
+            colour=color['editor']['indentGuide']['normal'],
+            radius=18,
             filled=True,
-            padding_y=0
+            padding_y=6,
+            group=True
         )
     ],
     'padding': 16
 }
+
 
 # Power decoration
 decor_power = {
@@ -39,10 +56,11 @@ decor_widget_title = {
 decor_prompt = {
     'decorations': [
         RectDecoration(
-            colour=color['editor']['fg'],
-            radius=4,
+            colour=color['editor']['indentGuide']['normal'],
+            radius=18,
             filled=True,
-            padding_y=2
+            padding_y=6,
+            group=True
         )
     ],
     'padding': 16
