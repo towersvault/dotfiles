@@ -95,15 +95,29 @@ screens = [
                     **decorations.decor_groupbox
                 ),
 
+                widget.TextBox(
+                    '\uF6D8',
+                    foreground=color['editor']['indentGuide']['active'],
+                    fontsize=20,
+                    **decorations.decor_groupbox
+                ),
+
                 # Group box segment
                 widget.GroupBox(
                     highlight_method="font",
                     active=color['editor']['fg'],
                     borderwidth=0,
-                    inactive=color['editor']['gutter']['normal'],
+                    inactive=color['editor']['gutter']['active'],
                     block_highlight_text_color=color['syntax']['entity'],
                     center_aligned=True,
                     fontsize=16,
+                    **decorations.decor_groupbox
+                ),
+
+                widget.TextBox(
+                    '\uF6D8',
+                    foreground=color['editor']['indentGuide']['active'],
+                    fontsize=20,
                     **decorations.decor_groupbox
                 ),
 
@@ -140,6 +154,7 @@ screens = [
                 ),
                 
                 widget.PulseVolume(
+                    get_volume_command='pamixer --get-volume',
                     **decorations.decor_base
                 ),
 

@@ -52,9 +52,9 @@ keys = [
     Key([mod, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
 
     # Media keys
-    Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse set Master toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 2%- unmute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 2%+ unmute")),
+    Key([], "XF86AudioMute", lazy.spawn("pamixer --toggle-mute")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer --decrease 2")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer --increase 2")),
 
     # Brightness keys
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")),
