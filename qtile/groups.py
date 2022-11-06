@@ -17,7 +17,7 @@ groups.append(Group('5', label='\uF1B6'))  # Steam
 groups.append(Group('6', label='\uE7B5'))  # IntelliJ
 groups.append(Group('7', label='\uF860'))  # Chat Apps
 groups.append(Group('8', label='\uF718'))  # Office
-# groups.append(Group('9', label='\uF8BB'))  # Generic
+groups.append(Group('9', label='\uF444'))  # Generic
 
 for i in groups:
     keys.extend(

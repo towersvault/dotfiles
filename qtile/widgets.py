@@ -83,6 +83,55 @@ widgets = [
         length=bar.STRETCH
     ),
 
+    # Network load segment
+    widget.TextBox(
+        '\uFBF1',
+        fontsize=20,
+        **decorations.decor_base
+    ),
+
+    widget.Net(
+        format='\uE340{down}\n\uE353{up}',
+        **decorations.decor_base
+    ),
+
+    widget.Spacer(
+        length=20
+    ),
+
+    # CPU load segment
+    widget.TextBox(
+        '\uF85A',
+        fontsize=20,
+        **decorations.decor_base
+    ),
+
+    widget.CPU(
+        format='{load_percent:>2.0f}%',
+        **decorations.decor_base
+    ),
+
+    widget.Spacer(
+        length=20
+    ),
+
+    # Memory segment
+    widget.TextBox(
+        '\uE266',
+        fontsize=20,
+        **decorations.decor_base
+    ),
+
+    widget.Memory(
+        measure_mem='G',
+        format='{MemUsed:>2.0f}{mm}',
+        **decorations.decor_base
+    ),
+
+    widget.Spacer(
+        length=20
+    ),
+
     # WiFi segment
     widget.TextBox(
         '\uF96A',

@@ -31,5 +31,11 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # Load cursor theme
 xrdb ~/.Xresources
 
+# Run OpenRGB
+openrgb -p Retro.orp &
+
+# Make Museeks executable
+export PATH=$PATH:/usr/local/bin/museeks
+
 # Start qtile window manager
 qtile start
