@@ -28,5 +28,8 @@ xinput --set-prop 13 'libinput Accel Speed' 0.7  # Set cursor speed
 # Set Dolphin icons
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+# Load cursor theme
+xrdb ~/.Xresources
+
 # Start qtile window manager
 qtile start

@@ -38,6 +38,9 @@ from layouts import layouts
 from groups import groups
 from colors import ayu_dark as color
 import decorations
+from widgets import widgets
+
+from os import path
 
 
 mod = "mod4"
@@ -55,151 +58,7 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         top=bar.Bar(
-            [
-                widget.Spacer(
-                    length=16
-                ),
-
-                widget.TextBox(
-                    '\uF848',
-                    fontsize=20,
-                    **decorations.decor_prompt
-                ),
-
-                # Prompt segment
-                widget.Prompt(
-                    prompt='',
-                    cursor_color=color['editor']['fg'],
-                    **decorations.decor_prompt
-                ),
-
-                widget.Spacer(
-                    length=16
-                ),
-
-                # Window name segment
-                widget.WindowName(
-                    format='{name}',
-                    **decorations.decor_base
-                ),
-
-                widget.Spacer(
-                    length=bar.STRETCH
-                ),
-
-                widget.TextBox(
-                    '\uF574',
-                    foreground=color['syntax']['keyword'],
-                    fontsize=20,
-                    mouse_callbacks={'Button1': lazy.spawn('systemctl hibernate')},
-                    **decorations.decor_groupbox
-                ),
-
-                widget.TextBox(
-                    '\uF6D8',
-                    foreground=color['editor']['indentGuide']['active'],
-                    fontsize=20,
-                    **decorations.decor_groupbox
-                ),
-
-                # Group box segment
-                widget.GroupBox(
-                    highlight_method="font",
-                    active=color['editor']['fg'],
-                    borderwidth=0,
-                    inactive=color['editor']['gutter']['active'],
-                    block_highlight_text_color=color['syntax']['entity'],
-                    center_aligned=True,
-                    fontsize=16,
-                    **decorations.decor_groupbox
-                ),
-
-                widget.TextBox(
-                    '\uF6D8',
-                    foreground=color['editor']['indentGuide']['active'],
-                    fontsize=20,
-                    **decorations.decor_groupbox
-                ),
-
-                widget.Clock(
-                    format="%-H:%M\n%-d %b %Y",
-                    **decorations.decor_groupbox
-                ),
-
-                widget.Spacer(
-                    length=bar.STRETCH
-                ),
-
-                # WiFi segment
-                widget.TextBox(
-                    '\uF96A',
-                    fontsize=20,
-                    **decorations.decor_base
-                ),
-
-                widget.Wlan(
-                    format="{percent:2.0%}",
-                    **decorations.decor_base
-                ),
-
-                widget.Spacer(
-                    length=20
-                ),
-
-                # Sound segment
-                widget.TextBox(
-                    '\uFA7D',
-                    fontsize=20,
-                    **decorations.decor_base
-                ),
-                
-                widget.PulseVolume(
-                    get_volume_command='pamixer --get-volume',
-                    **decorations.decor_base
-                ),
-
-                widget.Spacer(
-                    length=20
-                ),
-
-                # # Brightness segment
-                widget.TextBox(
-                    '\uF5DD',
-                    fontsize=20,
-                    **decorations.decor_base
-                ),
-
-                widget.Backlight(
-                    backlight_name="amdgpu_bl0",
-                    **decorations.decor_base
-                ),
-
-                widget.Spacer(
-                    length=20
-                ),
-
-                # Battery segment
-                widget.TextBox(
-                    '\uF578',
-                    fontsize=20,
-                    **decorations.decor_base
-                ),
-                
-                widget.Battery(
-                    format="{percent:2.0%}",
-                    full_char="",
-                    charge_char="",
-                    discharge_char="",
-                    empty_char="",
-                    unknown_char="",
-                    low_foreground=color['syntax']['regexp'],
-                    **decorations.decor_base
-                ),
-
-                widget.Spacer(
-                    length=20
-                )
-            ],
+            widgets,
 
             # Height of Bar
             50,
@@ -210,12 +69,13 @@ screens = [
             background=color['ui']['bg']
         ),
         # Set Static Wallpaper
-        wallpaper="/home/clifford/Downloads/sebastian-staines-O5rFo-cJu94-unsplash.jpg",
+        wallpaper="/home/clifford/dotfiles/wallpaper.jpg",
 
         # Wallpaper mode to 'fill' or 'stretch'
         wallpaper_mode='fill'
     ),
 ]
+
 
 # Drag floating layouts.
 mouse = [
