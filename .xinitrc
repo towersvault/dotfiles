@@ -37,5 +37,8 @@ openrgb -p Retro.orp &
 # Make Museeks executable
 export PATH=$PATH:/usr/local/bin/museeks
 
+# Add additional program aliases
+alias obsidian=/home/clifford/apps/Obsidian-1.0.3.AppImage
+
 # Start qtile window manager
 qtile start

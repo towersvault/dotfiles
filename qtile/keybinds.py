@@ -9,6 +9,8 @@ from libqtile.utils import guess_terminal
 
 from datetime import datetime
 
+from utils import get_next_screenshot
+
 
 mod = 'mod4'
 terminal = guess_terminal('alacritty')
@@ -56,15 +58,18 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer --decrease 2")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer --increase 2")),
 
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioStop", lazy.spawn("playerctl stop")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+
     # Brightness keys
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
 
     # Screenshot
-    Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % datetime.now().strftime("%Y%m%d_%H%M%S"))),
+    Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % get_next_screenshot())),
 
     # Change layouts
-    Key([mod], 'Tab', lazy.window.toggle_floating(), desc='Toggle highlighted window to either floating or non-floating, opposite of which it is'),
-
-
+    Key([mod], 'Tab', lazy.window.toggle_floating(), desc='Toggle highlighted window to either floating or non-floating, opposite of which it is')
 ]
