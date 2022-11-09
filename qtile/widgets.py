@@ -140,7 +140,7 @@ widgets = [
     ),
 
     widget.Wlan(
-        format="{percent:2.0%}",
+        format="{percent:4.0%}",
         **decorations.decor_base
     ),
 
