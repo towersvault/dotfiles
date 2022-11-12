@@ -48,8 +48,8 @@ terminal = guess_terminal("alacritty")
 
 
 widget_defaults = dict(
-    font="Source Code Pro Black, NotoEmoji Nerd Font Mono",
-    fontsize=12,
+    font="Noto Sans Mono Black, NotoEmoji Nerd Font Mono",
+    fontsize=11,
     padding=0,
     foreground=color['editor']['fg']
 )

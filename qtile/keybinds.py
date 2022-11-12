@@ -9,7 +9,7 @@ from libqtile.utils import guess_terminal
 
 from datetime import datetime
 
-from utils import get_next_screenshot
+from utils import get_next_screenshot_new as get_next_screenshot
 
 
 mod = 'mod4'
@@ -45,7 +45,8 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
     # Spawn application
-    Key([mod], 'space', lazy.spawncmd(), desc='Spawn a command using a prompt widget'),
+    Key([mod, 'shift'], 'space', lazy.spawncmd(), desc='Spawn a command using a prompt widget'),
+    Key([mod], 'space', lazy.spawn('rofi -disable-history -drun-display-format {name} -show drun')),
 
     # Reload config
     Key([mod, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
@@ -68,7 +69,7 @@ keys = [
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
 
     # Screenshot
-    Key([mod], "F2", lazy.spawn("shotgun -f png /home/clifford/Pictures/Screenshots/screenshot_%s.png" % get_next_screenshot())),
+    Key([], "Print", lazy.spawn(f"scrot 'Screenshot_%Y%m%d_%H%M%S.png' -e 'mv $f $$(xdg-user-dir SCREENSHOTS)'")),
 
     # Change layouts
     Key([mod], 'Tab', lazy.window.toggle_floating(), desc='Toggle highlighted window to either floating or non-floating, opposite of which it is')
