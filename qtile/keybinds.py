@@ -59,10 +59,10 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer --decrease 2")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer --increase 2")),
 
-    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
-    Key([], "XF86AudioStop", lazy.spawn("playerctl stop")),
-    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
-    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl -i 'firefox' play-pause")),
+    Key([], "XF86AudioStop", lazy.spawn("playerctl -i 'firefox' stop")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl -i 'firefox' next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl -i 'firefox' previous")),
 
     # Brightness keys
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")),

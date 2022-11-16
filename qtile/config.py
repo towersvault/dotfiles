@@ -24,11 +24,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout
+from libqtile import bar, layout, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.widget import backlight
+from libqtile.log_utils import logger
+from libqtile import qtile
 
 from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration
@@ -45,6 +47,18 @@ from os import path
 
 mod = "mod4"
 terminal = guess_terminal("alacritty")
+
+
+@hook.subscribe.setgroup
+def set_group():
+    # logger.warning("Applying group label change")
+    # try:
+    #     for i in range(0, 9):
+    #         qtile.groups[i].label = str(i)
+    # except Exception as e:
+    #     logger.error(str(e))
+    # groups[0].label = 'A'
+    pass
 
 
 widget_defaults = dict(
@@ -75,7 +89,6 @@ screens = [
         wallpaper_mode='fill'
     ),
 ]
-
 
 # Drag floating layouts.
 mouse = [

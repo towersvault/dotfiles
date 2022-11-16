@@ -13,31 +13,44 @@ widgets = [
         length=16
     ),
 
+    # widget.TextBox(
+    #     '\uF848',
+    #     fontsize=20,
+    #     **decorations.decor_prompt
+    # ),
+
+    # # Prompt segment
+    # widget.Prompt(
+    #     prompt='',
+    #     cursor_color=color['editor']['fg'],
+    #     **decorations.decor_prompt
+    # ),
+
+    # widget.Spacer(
+    #     length=16
+    # ),
+
     widget.TextBox(
-        '\uF848',
+        '\uFB13',
         fontsize=20,
-        **decorations.decor_prompt
-    ),
-
-    # Prompt segment
-    widget.Prompt(
-        prompt='',
-        cursor_color=color['editor']['fg'],
-        **decorations.decor_prompt
-    ),
-
-    widget.Spacer(
-        length=16
+        **decorations.decor_base
     ),
 
     # Window name segment
     widget.WindowName(
         format='{name}',
+        font='Noto Sans Display Bold',
+        fontsize=12,
         **decorations.decor_base
     ),
 
     widget.Spacer(
         length=bar.STRETCH
+    ),
+
+    widget.Spacer(
+        length=16,
+        **decorations.decor_groupbox
     ),
 
     widget.TextBox(
@@ -76,6 +89,11 @@ widgets = [
 
     widget.Clock(
         format="%-H:%M\n%-d %b %Y",
+        **decorations.decor_groupbox
+    ),
+
+    widget.Spacer(
+        length=16,
         **decorations.decor_groupbox
     ),
 

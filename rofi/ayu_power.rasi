@@ -1,0 +1,41 @@
+configuration {
+	show-icons:                 true;
+}
+
+* {
+    background-color:           #0b0e14;
+    raised-color:               #1e232a;
+    text-color:                 #bfbdb6;
+    highlight:                  #59c2ff;
+    border-orange:              #ff8f40;
+    
+    font:                       "Noto Sans Mono Black 10";
+}
+
+window {
+    background-color:           @background-color;
+    width:                      600px;
+    height:                     391px;
+    y-offset:                   64px;
+	location:                   north;
+	border:                     1px solid;
+	border-color:               @raised-color;
+    border-radius:              14px;
+    children:                   [mainbox];
+}
+
+mainbox {
+    spacing:                    0;
+    children:                   [textbox-prompt-colon, listview];
+}
+
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    font:                       "Noto Sans Mono Black 30";
+    str:                         "";
+    padding:                     12px 16px;
+    border-radius:               0px;
+    background-color:            @border-orange;
+    text-color:                  @raised-color;
+}

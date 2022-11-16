@@ -1,81 +1,81 @@
 configuration {
-	display-drun:    "Activate";
-	display-run:     "Execute";
-	display-window:  "Window";
-	show-icons:      true;
-	sidebar-mode:    false;
+	display-drun:               "Activate";
+	display-run:                "Execute";
+	display-window:             "Window";
+	show-icons:                 true;
+	sidebar-mode:               false;
 }
 
 * {
-    background-color: #0b0e14;
-    raised-color: #1e232a;
-    text-color: #bfbdb6;
-    highlight: #59c2ff;
-    border-orange: #ff8f40;
+    background-color:           #0b0e14;
+    raised-color:               #1e232a;
+    text-color:                 #bfbdb6;
+    highlight:                  #59c2ff;
+    border-orange:              #ff8f40;
     
-    font: "Noto Sans Mono Black 10";
+    font:                       "Noto Sans Black 10";
 }
 
 window {
-    background-color: @background-color;
-    width: 600px;
-    height: 391px;
-    y-offset: 64;
-	location:	 north;
-	border:           1px solid;
-	border-color:	    @raised-color;
-    border-radius: 14px;
-    children: [mainbox];
+    background-color:           @background-color;
+    width:                      600px;
+    height:                     391px;
+    y-offset:                   64px;
+	location:                   north;
+	border:                     1px solid;
+	border-color:               @raised-color;
+    border-radius:              14px;
+    children:                   [mainbox];
 }
 
 mainbox {
-    spacing: 0;
-    children: [entry, listview];
+    spacing:                    0;
+    children:                   [entry, listview];
 }
 
 inputbox {
-	padding: 5px;
-	spacing: 0px;
-    width: 100%;
-    children: [entry];
+	padding:                    5px;
+	spacing:                    0px;
+    width:                      100%;
+    children:                   [entry];
 }
 
 listview {
-	spacing: 0px;
-	dynamic: true;
-	cycle:   false;
+	spacing:                    0px;
+	dynamic:                    true;
+	cycle:                      false;
 }
 
 entry {
-	expand:         false;
-	text-color:     @normal-foreground;
-	vertical-align: 1;
-	padding:        8px;
-    margin: 8px;
-	background-color: inherit;
-	border:           1px solid;
-	border-color:	    @border-orange;
-    border-radius: 7px;
+	expand:                     false;
+	text-color:                 @normal-foreground;
+	vertical-align:             1;
+	padding:                    8px;
+    margin:                     8px;
+	background-color:           inherit;
+	border:                     1px solid;
+	border-color:               @border-orange;
+    border-radius:              7px;
 }
 
 element {
-    padding: 10px;
-    margin: 4px;
-    border-radius: 7px;
+    padding:                    10px;
+    margin:                     4px;
+    border-radius:              7px;
 }
 
 element-icon {
-    background-color: inherit;
-    size: 1.5em;
+    background-color:           inherit;
+    size:                       1.5em;
 }
 
 element-text {
-    background-color: inherit;
-    text-color:       inherit;
-    vertical-align: 0.5;
-    padding: 0 0 0 16px;
+    background-color:           inherit;
+    text-color:                 inherit;
+    vertical-align:             0.5;
+    padding:                    0 0 0 16px;
 }
 
 element selected.normal {
-    background-color: @raised-color;
+    background-color:           @raised-color;
 }

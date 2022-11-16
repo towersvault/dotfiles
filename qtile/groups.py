@@ -6,18 +6,46 @@ from keybinds import keys
 
 mod = 'mod4'
 
-# groups = [Group(i) for i in "123456789"]
-groups = list()
-groups.append(Group('1', label='\uF738'))  # Firefox
-groups.append(Group('2', label='\uE795'))  # Terminal
-groups.append(Group('3', label='\uFB0F'))  # VSCode
-# groups.append(Group(''))  # IntelliJ IDEA
-groups.append(Group('4', label='\uF9C6'))  # Spotify 
-groups.append(Group('5', label='\uF1B6'))  # Steam
-groups.append(Group('6', label='\uE7B5'))  # IntelliJ
-groups.append(Group('7', label='\uF860'))  # Chat Apps
-groups.append(Group('8', label='\uF48A'))  # Office
-groups.append(Group('9', label='\uF444'))  # Generic
+group_attributes = (
+    {
+        'label': '\uF738',  # Firefox
+        'color': ''
+    },
+    {
+        'label': '\uE795',  # Terminal
+        'color': ''
+    },
+    {
+        'label': '\uFB0F',  # VSCode
+        'color': ''
+    },
+    {
+        'label': '\uF9C6',  # Spotify
+        'color': ''
+    },
+    {
+        'label': '\uF1B6',  # Steam
+        'color': ''
+    },
+    {
+        'label': '\uE7B5',  # IntelliJ
+        'color': ''
+    },
+    {
+        'label': '\uF860',  # Chat Apps
+        'color': ''
+    },
+    {
+        'label': '\uF48A',  # Office
+        'color': ''
+    },
+    {
+        'label': '\uF444',  # Generic
+        'color': ''
+    },
+)
+
+groups = [Group(str(i + 1), label=group_attributes[i]['label']) for i in range(0, len(group_attributes))]
 
 for i in groups:
     keys.extend(
