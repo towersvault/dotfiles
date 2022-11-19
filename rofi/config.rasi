@@ -1,2 +1,4 @@
 //@theme "/usr/share/rofi/themes/side.rasi"
+//@theme "/usr/share/rofi/themes/ayu.rasi"
+//@theme "/usr/share/rofi/themes/ayu_wide.rasi"
 @theme "/usr/share/rofi/themes/ayu.rasi"

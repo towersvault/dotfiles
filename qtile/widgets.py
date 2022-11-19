@@ -57,7 +57,7 @@ widgets = [
         '\uF574',
         foreground=color['syntax']['keyword'],
         fontsize=20,
-        mouse_callbacks={'Button1': lazy.spawn('systemctl hibernate')},
+        mouse_callbacks={'Button1': lazy.spawn('/home/clifford/dotfiles/rofi/powermenu.sh')},
         **decorations.decor_groupbox
     ),
 

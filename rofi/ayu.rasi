@@ -1,5 +1,5 @@
 configuration {
-	display-drun:               "Activate";
+	display-drun:               "";
 	display-run:                "Execute";
 	display-window:             "Window";
 	show-icons:                 true;
@@ -7,19 +7,22 @@ configuration {
 }
 
 * {
-    background-color:           #0b0e14;
-    raised-color:               #1e232a;
-    text-color:                 #bfbdb6;
-    highlight:                  #59c2ff;
-    border-orange:              #ff8f40;
+    background-color:           #0B0E14AA;
+    raised-color:               #1E232A;
+    text-color:                 #BFBDB6;
+    highlight:                  #59C2FF;
+    border-orange:              #FF8F40;
+    search-hint-color:          #3C404A;
+    highlight-text:             #454B55;
     
-    font:                       "Noto Sans Black 10";
+    font:                       "Noto Sans Display Bold 12";
 }
 
+// Window
 window {
     background-color:           @background-color;
     width:                      600px;
-    height:                     391px;
+    height:                     308px;
     y-offset:                   64px;
 	location:                   north;
 	border:                     1px solid;
@@ -28,54 +31,98 @@ window {
     children:                   [mainbox];
 }
 
+// Main Box
 mainbox {
-    spacing:                    0;
-    children:                   [entry, listview];
+    spacing:                    8px;
+    children:                   [inputbar, listview];
 }
 
-inputbox {
-	padding:                    5px;
-	spacing:                    0px;
-    width:                      100%;
-    children:                   [entry];
+
+// Search Input Bar
+inputbar {
+    enabled:                    true;
+    spacing:                    10px;
+    margin:                     0px;
+    padding:                    15px;
+    border:                     0px solid;
+    border-color:               @selected;
+    background-color:           @raised-color;
+    text-color:                 @text-color;
+    children:                   [prompt, entry];
 }
 
-listview {
-	spacing:                    0px;
-	dynamic:                    true;
-	cycle:                      false;
+prompt {
+    enabled:                    true;
+    background-color:           inherit;
+    text-color:                 @border-orange;
+    vertical-align:             0.5;
+    size:                       2em;
+    font:                       "NotoEmoji Nerd Font Mono 15";
 }
 
 entry {
-	expand:                     false;
-	text-color:                 @normal-foreground;
-	vertical-align:             1;
-	padding:                    8px;
+    expand:                     false;
+    text-color:                 @text-color;
+    vertical-align:             1;
+    padding:                    8px;
     margin:                     8px;
-	background-color:           inherit;
-	border:                     1px solid;
-	border-color:               @border-orange;
-    border-radius:              7px;
+    width:                      100%;
+    background-color:           inherit;
+    placeholder:                "Search";
+    placeholder-color:          @search-hint-color;
 }
 
+// List View
+listview {
+    enabled:                    true;
+    dynamic:                    true;
+    cycle:                      true;
+    layout:                     vertical;
+    columns:                    4;
+    lines:                      1;
+    reverse:                    false;
+    fixed-height:               true;
+    fixed-columns:              true;
+    spacing:                    20px;
+    margin:                     20px;
+    padding:                    0px;
+    background-color:           transparent;
+}
+
+// Application Element
 element {
-    padding:                    10px;
-    margin:                     4px;
-    border-radius:              7px;
+    enabled:                    true;
+    padding:                    0px;
+    margin:                     0px;
+    border-radius:              0px;
+    spacing:                    20px;
+    background-color:           transparent;
+    orientation:                vertical;
+    cursor:                     pointer;
 }
 
 element-icon {
-    background-color:           inherit;
-    size:                       1.5em;
+    padding:                    30px;
+    border-radius:              20px;
+    background-color:           @raised-color;
+    size:                       48px;
+    cursor:                     inherit;
 }
 
 element-text {
-    background-color:           inherit;
     text-color:                 inherit;
     vertical-align:             0.5;
-    padding:                    0 0 0 16px;
+    horizontal-align:           0.5;
+    padding:                    10px;
+    cursor:                     inherit;
+    background-color:           transparent;
+    font:                       "Noto Sans Display Bold 10";
+    highlight:                  @highlight;
 }
 
-element selected.normal {
-    background-color:           @raised-color;
+element-text.selected {
+    border-radius:              100%;
+    background-color:           @highlight;
+    text-color:                 @background-color;
+    highlight:                  underline #0b0e14;
 }
