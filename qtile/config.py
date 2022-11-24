@@ -49,16 +49,18 @@ mod = "mod4"
 terminal = guess_terminal("alacritty")
 
 
-@hook.subscribe.setgroup
-def set_group():
-    # logger.warning("Applying group label change")
-    # try:
-    #     for i in range(0, 9):
-    #         qtile.groups[i].label = str(i)
-    # except Exception as e:
-    #     logger.error(str(e))
-    # groups[0].label = 'A'
-    pass
+# @hook.subscribe.setgroup
+# def set_group():
+#     logger.warning("Applying group label change")
+#     try:
+#         # for i in range(0, 9):
+#         #     qtile.groups[i].label = str(i)
+#         print(qtile.widget)
+#         qtile.widgets_map[7].inactive = color['syntax']['constant']
+#     except Exception as e:
+#         logger.error(str(e))
+#     # groups[0].label = 'A'
+#     # pass
 
 
 widget_defaults = dict(

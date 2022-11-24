@@ -33,6 +33,7 @@ widgets = [
     widget.TextBox(
         '\uFB13',
         fontsize=20,
+        foreground=color['syntax']['keyword'],
         **decorations.decor_base
     ),
 
@@ -54,8 +55,8 @@ widgets = [
     ),
 
     widget.TextBox(
-        '\uF574',
-        foreground=color['syntax']['keyword'],
+        '\uF303',
+        foreground=color['syntax']['tag'],
         fontsize=20,
         mouse_callbacks={'Button1': lazy.spawn('/home/clifford/dotfiles/rofi/powermenu.sh')},
         **decorations.decor_groupbox
@@ -74,7 +75,7 @@ widgets = [
         active=color['editor']['fg'],
         borderwidth=0,
         inactive=color['editor']['gutter']['active'],
-        block_highlight_text_color=color['syntax']['entity'],
+        block_highlight_text_color=color['syntax']['keyword'],
         center_aligned=True,
         fontsize=16,
         **decorations.decor_groupbox

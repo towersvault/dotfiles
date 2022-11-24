@@ -41,6 +41,9 @@ keys = [
     # Lock computer
     Key([mod, 'shift'], 'q', lazy.spawn('xset s activate')),
 
+    # Show power menu
+    Key([mod], 'Escape', lazy.spawn('/home/clifford/dotfiles/rofi/powermenu.sh')),
+
     # Spawn terminal
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 

@@ -7,7 +7,7 @@ configuration {
 }
 
 * {
-    background-color:           #0B0E14AA;
+    background-color:           #0B0E14;
     raised-color:               #1E232A;
     text-color:                 #BFBDB6;
     highlight:                  #59C2FF;
